@@ -12,13 +12,12 @@ yarn install
 
 Com isso feito, para rodar sua aplicação, basta utilizar o comando
 ````
-yarn dev
+yarn start
 ````
 
 <br>
 
 Link para a documentação da API utilizada no projeto:
 
-````
 https://desafiofullstackdoc.vercel.app
-````
+
