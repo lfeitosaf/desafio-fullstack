@@ -23,12 +23,15 @@ const EditProfile = () => {
   } = useForm<iUserRegister>({
     resolver: yupResolver(contactSchemaRegister),
   });
-  const { userUpdate } = useUserContext();
+  const { userUpdate, deleteUser } = useUserContext();
 
   const submit = (data: any) => {
     userUpdate(data);
     reset();
   };
+  function handleDeleteProfile() {
+    deleteUser();
+  }
   return (
     <MainContainer>
       <LoginContainer>
@@ -53,10 +56,12 @@ const EditProfile = () => {
             {...register('password')}
           ></Input>
           <ErrorMessage>{errors.password?.message}</ErrorMessage>
-          <Button type='submit'>Entrar</Button>
+          <Button type='submit'>Salvar alterações</Button>
+          <Button onClick={() => handleDeleteProfile()}>Excluir perfil</Button>
         </Form>
       </LoginContainer>
     </MainContainer>
   );
 };
+
 export default EditProfile;

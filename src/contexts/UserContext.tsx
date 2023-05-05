@@ -34,6 +34,7 @@ export interface iUserContext {
   userRegister(data: iUserRegister): void;
   userLogin(data: iUserLogin): void;
   userLogout(): void;
+  deleteUser(): void;
   userUpdate(data: any): void;
   contacts: IContacts[];
   setContacts: (data: IContacts[]) => void;
@@ -125,6 +126,20 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const deleteUser = async () => {
+    try {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      await api.delete(`/users/profile`);
+      toast.success('Perfil deletado com sucesso!');
+      setUser(null);
+      localStorage.removeItem('@user: token');
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+      toast.error('Erro ao deletar perfil');
+    }
+  };
+
   const userLogout = () => {
     setUser(null);
     localStorage.removeItem('@user: token');
@@ -140,6 +155,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         userLogin,
         userLogout,
         userUpdate,
+        deleteUser,
         contacts,
         setContacts,
         loading,
