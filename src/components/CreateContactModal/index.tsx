@@ -14,7 +14,7 @@ import { Label } from '../Label';
 import { Input } from '../Input';
 import { ErrorMessage } from '../ErrorMessage';
 import { Button } from '../Button';
-import { IContactRegister } from '../../services/contact';
+import { IContact } from '../../services/contact';
 import { contactSchemaRegister } from '../../validation/contact';
 import { useContactContext } from '../../hooks/useContactContext';
 
@@ -24,13 +24,13 @@ const Modal = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IContactRegister>({
+  } = useForm<IContact>({
     resolver: yupResolver(contactSchemaRegister),
   });
-  const { setModal } = useUserContext();
+  const { setContactModal } = useUserContext();
   const { userContact } = useContactContext();
 
-  const submit = (data: IContactRegister) => {
+  const submit = (data: IContact) => {
     userContact(data);
     reset();
   };
@@ -44,32 +44,26 @@ const Modal = () => {
             <X
               src='../../X.png'
               onClick={() => {
-                setModal(false);
+                setContactModal(false);
               }}
             ></X>
           </DivModal>
           <DivBody>
             <Label htmlFor='name'>Nome</Label>
-            <Input id='name' placeholder='Nome' {...register('name')}></Input>
+            <Input id='name' {...register('name')}></Input>
             <ErrorMessage>{errors.name?.message}</ErrorMessage>
             <Label htmlFor='email'>Email</Label>
-            <Input
-              id='email'
-              placeholder='Email'
-              type='email'
-              {...register('email')}
-            ></Input>
+            <Input id='email' type='email' {...register('email')}></Input>
             <ErrorMessage>{errors.email?.message}</ErrorMessage>
             <Label htmlFor='telefone'>Telefone</Label>
             <Input
               id='telefone'
-              placeholder='Telefone'
               type='number'
               {...register('telefone')}
             ></Input>
             <ErrorMessage>{errors.telefone?.message}</ErrorMessage>
+            <Button type='submit'>Cadastrar contato</Button>
           </DivBody>
-          <Button type='submit'>Cadastrar contato</Button>
         </Form>
       </Section>
     </ModalShadow>

@@ -5,3 +5,9 @@ export const contactSchemaRegister = yup.object().shape({
   email: yup.string().required('Campo obrigatório').email('E-mail inválido'),
   telefone: yup.string().required('Número de telefone obrigatório'),
 });
+
+export const contactSchemaEdit = yup.object().shape({
+  name: yup.string(),
+  email: yup.string().email('E-mail inválido'),
+  telefone: yup.string(),
+});

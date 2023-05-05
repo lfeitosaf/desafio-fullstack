@@ -12,15 +12,18 @@ import {
   ContactContainer,
   ContactTitle,
   Title,
+  ButtonEdit,
 } from './styles';
-import Modal from '../../components/Modal';
+import Modal from '../../components/CreateContactModal';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
-  const { user, contacts, userLogout, setModal, modal } = useUserContext();
-  console.log(user);
+  const { user, contacts, userLogout, createContactModal, setContactModal } =
+    useUserContext();
+
   return (
     <>
-      {modal ? <Modal /> : null}
+      {createContactModal ? <Modal /> : null}
       <Nav>
         <Menu>
           <Title>Desafio Fullstack</Title>
@@ -30,6 +33,9 @@ const HomePage = () => {
       <Header>
         <DivHeader>
           <Title>Olá, {user?.name}</Title>
+          <Link to='/profile'>
+            <ButtonEdit>Editar perfil</ButtonEdit>
+          </Link>
         </DivHeader>
       </Header>
       <ContactContainer>
@@ -37,7 +43,7 @@ const HomePage = () => {
           <ContactTitle>Contatos</ContactTitle>
           <ButtonPlus
             src='../../../ButtonPlus.png'
-            onClick={() => setModal(true)}
+            onClick={() => setContactModal(true)}
           />
         </DivContact>
         <ContactList>

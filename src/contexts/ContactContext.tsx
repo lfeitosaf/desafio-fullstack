@@ -1,9 +1,10 @@
 import { createContext, ReactNode } from 'react';
 import { toast } from 'react-toastify';
-import { IContactRegister } from '../services/contact';
+import { IContact } from '../services/contact';
 import { useUserContext } from '../hooks/userUserContext';
 import { api } from '../services/api';
 import { IContacts } from './UserContext';
+import { useNavigate } from 'react-router-dom';
 
 interface iContactProviderProps {
   children: ReactNode;
@@ -11,8 +12,9 @@ interface iContactProviderProps {
 
 export interface iContactContext {
   deleteContact(id: string): void;
-  userContact(data: IContactRegister): void;
+  userContact(data: IContact): void;
   loadContacts(): void;
+  editContact(data: any, id: string): void;
 }
 
 export const ContactContext = createContext<iContactContext>(
@@ -20,9 +22,9 @@ export const ContactContext = createContext<iContactContext>(
 );
 
 export const ContactProvider = ({ children }: iContactProviderProps) => {
-  const { setModal, setLoading, contacts, setContacts, user, isAuthenticated } =
-    useUserContext();
+  const { setContactModal, contacts, setContacts } = useUserContext();
   const token = localStorage.getItem('@user: token');
+  const navigate = useNavigate();
 
   const loadContacts = async () => {
     try {
@@ -33,17 +35,30 @@ export const ContactProvider = ({ children }: iContactProviderProps) => {
       console.log(error);
     }
   };
-  const userContact = async (formData: IContactRegister) => {
+  const userContact = async (formData: IContact) => {
     try {
       api.defaults.headers.authorization = `Bearer ${token}`;
       const { data } = await api.post('/contacts', formData);
       setContacts([...contacts, data]);
       toast.success('Cadastro realizado com sucesso!');
-      setModal(true);
+      setContactModal(true);
     } catch (error) {
       toast.error('Erro ao realizar cadastro');
     }
-    setModal(false);
+    setContactModal(false);
+  };
+
+  const editContact = async (formData: any, id: string) => {
+    try {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      const { data } = await api.patch(`/contacts/${id}`, formData);
+      setContacts([...contacts.filter((contact) => contact.id !== id), data]);
+      toast.success('Contato atualizado com sucesso!');
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+      toast.error('Erro ao atualizar contato');
+    }
   };
 
   async function deleteContact(id: string) {
@@ -56,7 +71,7 @@ export const ContactProvider = ({ children }: iContactProviderProps) => {
 
   return (
     <ContactContext.Provider
-      value={{ userContact, deleteContact, loadContacts }}
+      value={{ userContact, editContact, deleteContact, loadContacts }}
     >
       {children}
     </ContactContext.Provider>

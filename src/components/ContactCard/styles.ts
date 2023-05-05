@@ -4,7 +4,7 @@ export const ContactCard = styled.li`
   width: 100%;
   height: 49px;
   color: ${({ theme }) => theme.colors.brand.quartiary};
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -15,7 +15,7 @@ export const ContactCard = styled.li`
     span,
     img,
     h4 {
-      color: ${({ theme }) => theme.colors.grey.grey3};
+      color: ${({ theme }) => theme.colors.brand.primary};
       background: ${({ theme }) => theme.colors.grey.grey2};
     }
     cursor: pointer;
@@ -26,7 +26,7 @@ export const ContactCard = styled.li`
 export const DivCard = styled.div`
   display: flex;
   gap: 40px;
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   :hover {
     div {
       color: ${({ theme }) => theme.colors.grey.grey1};
@@ -46,13 +46,23 @@ export const ContactTitle = styled.h4`
 export const Span = styled.span`
   font-weight: 400;
   font-size: 12px;
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   line-height: 22px;
   text-align: right;
   color: ${({ theme }) => theme.colors.brand.quartiary};
 `;
+
+export const EditImg = styled.img`
+  background: ${({ theme }) => theme.colors.grey.grey4};
+  width: 20px;
+  height: 20px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 export const DeleteCan = styled.img`
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   width: 20px;
   height: 20px;
   :hover {

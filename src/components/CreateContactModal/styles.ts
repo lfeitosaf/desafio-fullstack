@@ -29,7 +29,7 @@ export const Form = styled.form`
   padding: 54px 17px 25px;
   position: absolute;
   border-radius: 3px;
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   @media (min-width: 1080px) {
     margin: 0px 230px;
   }
@@ -44,7 +44,7 @@ export const DivModal = styled.div`
   gap: 8px;
   width: 280px;
   height: 40px;
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   border-radius: 4px 4px 0px 0px;
 `;
 
@@ -52,13 +52,13 @@ export const TitleModal = styled.h3`
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
 
   color: ${({ theme }) => theme.colors.grey.grey1};
 `;
 
 export const X = styled.img`
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   width: 11px;
   height: 11px;
   cursor: pointer;
@@ -71,6 +71,6 @@ export const DivBody = styled.div`
   padding: 24px 17px 25px;
   gap: 17px;
   width: 280px;
-  background: ${({ theme }) => theme.colors.grey.grey3};
+  background: ${({ theme }) => theme.colors.grey.grey4};
   border-radius: 0px 0px 4px 4px;
 `;

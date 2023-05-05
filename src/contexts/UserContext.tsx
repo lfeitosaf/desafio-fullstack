@@ -34,13 +34,16 @@ export interface iUserContext {
   userRegister(data: iUserRegister): void;
   userLogin(data: iUserLogin): void;
   userLogout(): void;
+  userUpdate(data: any): void;
   contacts: IContacts[];
   setContacts: (data: IContacts[]) => void;
   loading: boolean;
   isAuthenticated: boolean;
   setLoading: (newState: boolean) => void;
-  modal: boolean;
-  setModal: (newState: boolean) => void;
+  createContactModal: boolean;
+  setContactModal: (newState: boolean) => void;
+  editContactModal: boolean;
+  setEditContactModal: (newState: boolean) => void;
 }
 
 interface IUserProviderProps {
@@ -53,7 +56,8 @@ const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<iUserInfo | null>(null);
   const [contacts, setContacts] = useState<IContacts[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [modal, setModal] = useState<boolean>(false);
+  const [createContactModal, setContactModal] = useState<boolean>(false);
+  const [editContactModal, setEditContactModal] = useState<boolean>(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const { loadContacts } = useContactContext();
   const token = window.localStorage.getItem('@user: token');
@@ -66,7 +70,6 @@ const UserProvider = ({ children }: IUserProviderProps) => {
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
-
           const { data } = await api.get('/users/profile');
           setUser(data);
           setContacts(data.contacts);
@@ -86,14 +89,15 @@ const UserProvider = ({ children }: IUserProviderProps) => {
       const response = await api.post(`/login`, formData);
       toast.success('Login realizado com sucesso');
       localStorage.setItem('@user: token', response.data.token);
-      setUser(response.data.user);
+      setUser(response.data);
       setIsAuthenticated(true);
-      navigate('/');
+      navigate('/', { replace: true });
     } catch (error) {
       console.log(error);
       toast.error('Erro ao realizar login');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const userRegister = async (formData: iUserRegister) => {
@@ -106,6 +110,19 @@ const UserProvider = ({ children }: IUserProviderProps) => {
       console.log(error);
     }
     setLoading(false);
+  };
+
+  const userUpdate = async (formData: iUser) => {
+    try {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      const { data } = await api.patch(`/users/profile`, formData);
+      toast.success('Perfil atualizado com sucesso!');
+      setUser(data);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+      toast.error('Erro ao atualizar perfil');
+    }
   };
 
   const userLogout = () => {
@@ -122,12 +139,15 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         userRegister,
         userLogin,
         userLogout,
+        userUpdate,
         contacts,
         setContacts,
         loading,
         setLoading,
-        modal,
-        setModal,
+        createContactModal,
+        setContactModal,
+        editContactModal,
+        setEditContactModal,
         isAuthenticated,
       }}
     >

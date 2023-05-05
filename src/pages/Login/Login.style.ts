@@ -20,7 +20,6 @@ export const ButtonRegister = styled(Link)`
   justify-content: center;
   width: 100%;
   gap: 20px;
-  margin-top: 30px;
   padding-bottom: 30px;
   color: black;
 `;

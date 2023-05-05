@@ -8,7 +8,7 @@ export const ButtonRegister = styled.button`
   padding: 0px 22px;
   font-weight: 500;
   font-size: 12px;
-  color: black;
+  color: ${({ theme }) => theme.colors.brand.primary};
   background-color: ${({ theme }) => theme.colors.brand.tertiary};
   border: 1px solid ${({ theme }) => theme.colors.brand.tertiary};
   border-radius: 4px;

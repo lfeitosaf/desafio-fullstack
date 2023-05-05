@@ -1,9 +1,9 @@
 const colors = {
   brand: {
-    primary: '#A82223',
-    secondary: '#7B0000',
-    tertiary: '#CEEBEE',
-    quartiary: '#EEF6F7',
+    primary: '#FD677B',
+    secondary: '#FEB1B7',
+    tertiary: '#FEDCDB',
+    quartiary: '#FEBECC',
   },
   grey: {
     grey1: '#FFFFFF',

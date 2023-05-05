@@ -39,41 +39,20 @@ const Register = () => {
         <Form onSubmit={handleSubmit(submit)}>
           <Title>Crie sua conta</Title>
           <Label htmlFor='nome'>Nome completo</Label>
-          <Input
-            id='name'
-            placeholder='Digite seu nome completo'
-            type='text'
-            {...register('name')}
-          />
+          <Input id='name' type='text' {...register('name')} />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
           <Label htmlFor='email'>Email</Label>
-          <Input
-            id='email'
-            placeholder='Digite seu e-mail'
-            type='email'
-            {...register('email')}
-          />
+          <Input id='email' type='email' {...register('email')} />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
           <Label htmlFor='email'>Telefone</Label>
-          <Input
-            id='telefone'
-            placeholder='Digite seu telefone'
-            type='number'
-            {...register('telefone')}
-          />
+          <Input id='telefone' type='number' {...register('telefone')} />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
           <Label htmlFor='password'>Senha</Label>
-          <Input
-            id='password'
-            placeholder='Digite sua senha'
-            type='password'
-            {...register('password')}
-          />
+          <Input id='password' type='password' {...register('password')} />
           <ErrorMessage>{errors.password?.message}</ErrorMessage>
           <Label htmlFor='passwordConfirmation'>Confirmar senha</Label>
           <Input
             id='passwordConfirmation'
-            placeholder='Digite novamente sua senha'
             type='password'
             {...register('passwordConfirmation')}
           />

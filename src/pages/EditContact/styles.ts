@@ -5,12 +5,12 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   width: 95%;
-  height: 450px;
+  height: 440px;
   background: ${({ theme }) => theme.colors.grey.grey4};
   box-shadow: 0px 3px 32px -8px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   padding: 33px 17px;
-  gap: 25px;
+  gap: 15px;
   margin: 0 auto;
   @media (min-width: 360px) {
     width: 370px;

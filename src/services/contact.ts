@@ -1,6 +1,6 @@
 import { iUserInfo } from '../contexts/UserContext';
 
-export interface IContactRegister {
+export interface IContact {
   name: string;
   email: string;
   telefone: string;

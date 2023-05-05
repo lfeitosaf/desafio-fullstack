@@ -8,7 +8,7 @@ import { Input } from '../../components/Input';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { ButtonRegister } from '../../components/Button copy';
+import { ButtonRegister } from '../../components/ButtonRegister';
 import { loginSchema } from '../../validation/login';
 import { useUserContext } from '../../hooks/userUserContext';
 import { iUserLogin } from '../../services/login';
@@ -33,20 +33,10 @@ const Login = () => {
         <Form onSubmit={handleSubmit(submit)}>
           <Title>Faça seu login</Title>
           <Label htmlFor='email'>Email</Label>
-          <Input
-            id='email'
-            placeholder='Digite seu e-mail'
-            type='email'
-            {...register('email')}
-          />
+          <Input id='email' type='email' {...register('email')} />
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
-          <Label htmlFor='password'>Digite sua senha</Label>
-          <Input
-            id='password'
-            placeholder='Digite sua senha'
-            type='password'
-            {...register('password')}
-          />
+          <Label htmlFor='password'>Senha</Label>
+          <Input id='password' type='password' {...register('password')} />
           <Button type='submit'>Entrar</Button>
           <Link to='/register'>
             <ButtonRegister>Cadastre-se</ButtonRegister>
