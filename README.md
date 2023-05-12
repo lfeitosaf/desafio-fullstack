@@ -1,5 +1,7 @@
 # Desafio Fullstack Front-end
 
+Projeto com o objetivo de criar um usuário e esse poder cadastrar vários contatos, ambos com CRUD.
+
 Para utilizar este projeto, é necessário instalar as dependências.
 
 
